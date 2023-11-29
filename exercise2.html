@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <!-- Two text fields - Name and Email -->
+        <input id="name" type="text" placeholder="Name" value=""><br><br>
+        <input id="email" type="email" placeholder="Email" value=""><br><br>
+        <!-- Two radio buttons for Gender - Male and Female -->
+        <input id="male" type="radio" name="gender" value="male"> Male
+        <input id="female" type="radio" name="gender" value="female"> Female<br><br>
+        <!-- Submit button -->
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Display form data -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Form submit event
+            $("#myForm").submit(function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Get values from form fields
+                var name = $("#name").val();
+                var email = $("#email").val();
+                var gender = $("input[name='gender']:checked").val();
+
+                // Create a div to display the form data
+                var formDataDiv = $("<div>")
+                    .html("Name: " + name + "<br>Email: " + email + "<br>Gender: " + gender)
+                    .hide(); // Initially hide the form data
+
+                // Append the form data to the body
+                $("body").append(formDataDiv);
+
+                // Fade in the form data
+                formDataDiv.fadeIn();
+
+                // Using jQuery CSS methods to style the form data
+                formDataDiv.css({
+                    'font-family': 'Arial',
+                    'border': '2px solid #000',
+                    'background-color': '#f0f0f0'
+                });
+
+                // Slide up the form data on mouseover
+                formDataDiv.mouseover(function () {
+                    $(this).slideUp();
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
